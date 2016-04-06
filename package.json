@@ -1,0 +1,31 @@
+{
+  "name": "html2pdf-cli",
+  "version": "0.1.4",
+  "description": "CLI HTML to PDF converter",
+  "main": "index.js",
+  "bin": {
+    "html2pdf": "index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cperezabo/html2pdf-cli.git"
+  },
+  "keywords": [
+    "html",
+    "pdf",
+    "converter"
+  ],
+  "author": "IODuck Software",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cperezabo/html2pdf-cli/issues"
+  },
+  "homepage": "https://github.com/cperezabo/html2pdf-cli#readme",
+  "dependencies": {
+    "gulp": "^3.9.1",
+    "gulp-html-pdf": "^0.3.0"
+  }
+}
