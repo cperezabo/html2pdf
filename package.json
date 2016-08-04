@@ -1,6 +1,6 @@
 {
   "name": "html2pdf-cli",
-  "version": "0.1.4",
+  "version": "0.1.6",
   "description": "CLI HTML to PDF converter",
   "main": "index.js",
   "bin": {
@@ -26,6 +26,7 @@
   "homepage": "https://github.com/cperezabo/html2pdf-cli#readme",
   "dependencies": {
     "gulp": "^3.9.1",
-    "gulp-html-pdf": "^0.3.0"
+    "gulp-html-pdf": "^0.3.0",
+    "gulp-logger": "0.0.2"
   }
 }

@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 
 var gulp = require('gulp'),
-    pdf = require('gulp-html-pdf');
+    pdf = require('gulp-html-pdf'),
+    logger = require('gulp-logger');
 
 var args = process.argv.slice(2)
 
@@ -31,5 +32,9 @@ function help() {
 function html2pdf(src, dest, options) {
     gulp.src(src)
         .pipe(pdf(options))
+        .pipe(logger({
+            before: 'Generating...',
+            after: 'Done!'
+        }))
         .pipe(gulp.dest(dest))
 }
