@@ -44,13 +44,24 @@ if (args.options) {
   }
 }
 
+gulp.src(args.sources)
+  .pipe(function (options) {
+    return through.obj(function (file, enc, cb) {
+      pdf.create(file.contents.toString(), options)
+        .toBuffer(function (err, buffer) {
+          if (err) {
+            cb(new gutil.PluginError('pdfWalker', err, {fileName: file.path}));
+            return;
+          }
 
-function html2pdf(src, dest, options) {
-    gulp.src(src)
-        .pipe(pdf(options))
-        .pipe(logger({
-            before: 'Generating...',
-            after: 'Done!'
-        }))
-        .pipe(gulp.dest(dest))
-}
+          file.contents = buffer;
+          file.path = gutil.replaceExtension(file.path, '.pdf');
+          cb(null, file);
+        });
+    });
+  }(args.options))
+  .pipe(logger({
+    before: 'Generating...',
+    after: 'Done!'
+  }))
+  .pipe(gulp.dest(args.destination));
