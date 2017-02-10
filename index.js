@@ -1,8 +1,12 @@
 #!/usr/bin/env node
 
 var gulp = require('gulp'),
-    pdf = require('gulp-html-pdf'),
-    logger = require('gulp-logger');
+  gutil = require('gulp-util'),
+  through = require('through2'),
+  pdf = require('html-pdf'),
+  logger = require('gulp-logger'),
+  ArgumentParser = require('argparse').ArgumentParser,
+  fs = require("fs");
 
 var args = process.argv.slice(2)
 
