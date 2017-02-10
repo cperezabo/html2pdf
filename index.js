@@ -8,30 +8,42 @@ var gulp = require('gulp'),
   ArgumentParser = require('argparse').ArgumentParser,
   fs = require("fs");
 
-var args = process.argv.slice(2)
+var parser = new ArgumentParser({
+  version: require('./package.json').version,
+  addHelp: true,
+  description: require('./package.json').description
+});
+parser.addArgument(
+  ['-s', '--sources'],
+  {
+    help: 'A file or a glob string. Example: file.html or \'*.html\'',
+    required: true
+  }
+);
+parser.addArgument(
+  ['-d', '--destination'],
+  {
+    help: 'A folder. Example: pdf/',
+    required: true
+  }
+);
+parser.addArgument(
+  ['-o', '--options'],
+  {
+    help: 'html-pdf options. Can be a JSON file or string'
+  }
+);
 
-if(args.length >= 2) {
-    options = {}
+var args = parser.parseArgs();
 
-    if(args[2]) {
-        options = require(args[2])
-    }
-
-    html2pdf(args[0], args[1], options)
-} else {
-    help()
+if (args.options) {
+  if (fs.existsSync(args.options) && fs.statSync(args.options).isFile()) {
+    args.options = require(args.options)
+  } else {
+    args.options = JSON.parse(args.options);
+  }
 }
 
-function help() {
-    var help = [
-        'Usage: html2pdf <src> <dest> <options-file>',
-        'e.g.:',
-        'html2pdf file.html ./pdf',
-        'html2pdf ./path/**/*.html ./pdf ../options.json'
-    ].join('\n')
-
-    console.log(help)
-}
 
 function html2pdf(src, dest, options) {
     gulp.src(src)
