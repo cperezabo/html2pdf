@@ -22,8 +22,11 @@
   },
   "homepage": "https://github.com/cperezabo/html2pdf-cli#readme",
   "dependencies": {
+    "argparse": "^1.0.9",
     "gulp": "^3.9.1",
-    "gulp-html-pdf": "^0.3.0",
-    "gulp-logger": "0.0.2"
+    "gulp-logger": "0.0.2",
+    "gulp-util": "^3.0.7",
+    "html-pdf": "^2.1.0",
+    "through2": "^2.0.3"
   }
 }
